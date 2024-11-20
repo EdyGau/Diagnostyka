@@ -1,0 +1,20 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Diagnostyka",
+        "description": "Diagnostyka API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/contact": {
+            "get": {
+                "summary": "Pobierz formularz kontaktowy",
+                "responses": {
+                    "200": {
+                        "description": "Formularz kontaktowy"
+                    }
+                }
+            }
+        }
+    }
+}
