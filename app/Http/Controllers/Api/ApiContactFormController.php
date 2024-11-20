@@ -52,10 +52,6 @@ class ApiContactFormController
 
             Log::info('Validated contact form data:', $validatedData);
 
-            if ($this->isFormDataInvalid($validatedData)) {
-                throw new FormSubmissionException("Invalid data in the form.");
-            }
-
             return response()->json([
                 'success' => true,
                 'message' => 'Form submitted successfully!',
@@ -76,7 +72,7 @@ class ApiContactFormController
             return response()->json([
                 'success' => false,
                 'message' => 'An unexpected error occurred.',
-            ], 500); // Status 500 dla błędów serwera
+            ], 500);
         }
     }
 
@@ -112,8 +108,6 @@ class ApiContactFormController
     public function index(): JsonResponse
     {
         try {
-            // Możemy pobierać dane z bazy danych, pliku lub z innego źródła.
-            // W tym przykładzie dane są wstawione statycznie.
             $contactForms = $this->getAllContactForms();
 
             return response()->json([
@@ -197,16 +191,5 @@ class ApiContactFormController
             1 => ['name' => 'John Doe', 'email' => 'johndoe@example.com', 'description' => 'This is a test message.'],
             2 => ['name' => 'Jane Doe', 'email' => 'janedoe@example.com', 'description' => 'Another test message.'],
         ];
-    }
-
-    /**
-     * Check if the form data is invalid.
-     *
-     * @param array $data
-     * @return bool
-     */
-    private function isFormDataInvalid(array $data): bool
-    {
-        return isset($data['email']) && $data['email'] == 'bad@example.com';
     }
 }
